@@ -1,0 +1,150 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+</head>
+
+<style>
+    .menu a {
+        float: left;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 20px;
+    }
+    .menu {  
+            position: sticky;
+            top: 0;
+            background-color: #8f5d60;
+            padding:10px 0px 10px 0px;
+            color:white;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+     .menu   a:hover {
+     background-color: rgb(231, 151, 126);
+    }
+    body {
+    font: 400 15px/1.8 Lato, sans-serif;
+    color: rgb(182, 121, 121);
+    }
+    table {
+      width: 50%;
+      margin-left: 15px;
+    }
+    th, td {
+      text-align: left;
+      padding-left: 8px;
+    }
+    th {
+      background-color: #cc4e4e;
+      color: white;
+    }
+
+    tr:nth-child(even) {background-color: #f2f2f2;}
+    
+    h2{
+      margin-left: 15px;
+    }
+    p{
+      margin-left: 15px;
+    }
+    input{
+      margin-left: 10px;
+    }
+
+    h1{
+        text-align: center;
+        color: black;
+    }
+  </style>
+ 
+ 
+
+<body>
+
+<div class="menu">
+        <a href="#/">Recruitement</a>
+        <a href="#/database">Database</a>
+        <a href="#/databasewithsearch">Search</a>
+</div>
+<br>
+<br>
+
+
+<script type="text/ng-template" id="page1.html">
+<h1>Recruitment Page</h1>
+<h3>{{message}}</h3>
+</script>
+
+
+
+<script type="text/ng-template" id="page2.html">
+<h1>Security Personnel Database</h1>
+<div>
+  </div>
+  <div ng-controller="SecondController">
+    <form name="commonForm">
+      <table class="table">
+        <tr>
+          <th> Name </th>
+          <th> Email </th>
+          <th> Date of Birth </th>
+          <th> Join Date </th>
+          <th> Phone </th>
+          <th> Security Type </th>
+        </tr>
+        <tr ng-repeat="employee in userData | filter : test">
+          <td> {{employee.firstName}} {{employee.lastName}}</td>
+          <td> {{employee.email | lowercase}}</td>
+          <td> {{employee.dob }}</td>
+          <td> {{employee.joindate}}</td>
+          <td> {{employee.phone}}</td>
+          <td> {{employee.type}}</td>
+        </tr>
+      </table>
+      <br>
+    </form>
+  </div>
+</script>
+
+
+<script type="text/ng-template" id="page3.html">
+<h1>Search From Database</h1>
+<div>
+    <h2>Security Personnel Database</h2>
+  </div>
+  <div ng-controller="ThirdController">
+    <p>Search:<input type="text" ng-model="test"></p>
+    <form name="commonForm">
+      <table class="table">
+        <tr>
+          <th> Name </th>
+          <th> Email </th>
+          <th> Date of Birth </th>
+          <th> Join Date </th>
+          <th> Phone </th>
+          <th> Security Type </th>
+        </tr>
+        <tr ng-repeat="employee in userData | filter : test">
+          <td> {{employee.firstName}} {{employee.lastName}}</td>
+          <td> {{employee.email | lowercase}}</td>
+          <td> {{employee.dob }}</td>
+          <td> {{employee.joindate}}</td>
+          <td> {{employee.phone}}</td>
+          <td> {{employee.type}}</td>
+        </tr>
+      </table>
+      <br>
+    </form>
+  </div>
+</script>
+
+
+<div ng-view></div>
+
+<script src="app.js"></script>
+</body>
+</html>
